@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">character recognition and tranalator   </string>
+    <string name="trans">Nepali</string>
+    <string name="title_activity_camera_work">CameraWork</string>
+    <string name="camera_1">1</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="Language">
+
+</string-array>
+</resources>

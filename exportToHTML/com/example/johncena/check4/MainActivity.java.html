@@ -1,0 +1,188 @@
+<html>
+<head>
+<title>MainActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(0,0,255); }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(128,128,128); font-style: italic; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+MainActivity.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">com.example.johncena.check4; 
+ 
+</span><span class="s0">import </span><span class="s1">android.annotation.TargetApi; 
+</span><span class="s0">import </span><span class="s1">android.content.Intent; 
+</span><span class="s0">import </span><span class="s1">android.database.Cursor; 
+</span><span class="s0">import </span><span class="s1">android.graphics.Bitmap; 
+</span><span class="s0">import </span><span class="s1">android.graphics.BitmapFactory; 
+</span><span class="s0">import </span><span class="s1">android.graphics.drawable.BitmapDrawable; 
+</span><span class="s0">import </span><span class="s1">android.net.Uri; 
+</span><span class="s0">import </span><span class="s1">android.os.Build; 
+</span><span class="s0">import </span><span class="s1">android.provider.MediaStore; 
+</span><span class="s0">import </span><span class="s1">android.support.v7.app.AppCompatActivity; 
+</span><span class="s0">import </span><span class="s1">android.os.Bundle; 
+</span><span class="s0">import </span><span class="s1">android.view.View; 
+</span><span class="s0">import </span><span class="s1">android.widget.Button; 
+</span><span class="s0">import </span><span class="s1">android.widget.ImageView; 
+</span><span class="s0">import </span><span class="s1">android.widget.Toast; 
+</span><span class="s0">import </span><span class="s1">android.graphics.drawable.BitmapDrawable; 
+</span><span class="s0">import </span><span class="s1">android.graphics.drawable.Drawable; 
+ 
+</span><span class="s0">public class </span><span class="s1">MainActivity </span><span class="s0">extends </span><span class="s1">AppCompatActivity { 
+    </span><span class="s0">private static final int </span><span class="s1">RESULT_LOAD_IMG =</span><span class="s2">1 </span><span class="s1">; 
+ 
+   </span><span class="s0">public </span><span class="s1">Button b1; 
+    ImageView imageButton; 
+    Button button; 
+    </span><span class="s0">static final int </span><span class="s1">REQUEST_IMAGE_CAPTURE = </span><span class="s2">1</span><span class="s1">; 
+    </span><span class="s0">private static int </span><span class="s1">ACTIVITY_START_CAMERA_APP = </span><span class="s2">0</span><span class="s1">; 
+    </span><span class="s0">private final static int </span><span class="s1">PICK_IMAGE = </span><span class="s2">12345</span><span class="s1">; 
+    String imgDecodableString; 
+ 
+ 
+ 
+    @Override 
+    </span><span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) { 
+        </span><span class="s0">super</span><span class="s1">.onCreate(savedInstanceState); 
+        setContentView(R.layout.activity_main); 
+        b1 = (Button) findViewById(R.id.b1); 
+ 
+      b1.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() { 
+ 
+            @Override 
+            </span><span class="s0">public void </span><span class="s1">onClick(View view) { 
+                Intent gallery = </span><span class="s0">new </span><span class="s1">Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI); 
+                startActivityForResult(gallery, PICK_IMAGE); 
+            } 
+ 
+ 
+ 
+        }); 
+ 
+        imageButton = (ImageView) findViewById(R.id.imageButton); 
+ 
+        imageButton.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() { 
+ 
+            @Override 
+            </span><span class="s0">public void </span><span class="s1">onClick(View view) { 
+                Intent i = </span><span class="s0">new </span><span class="s1">Intent(</span><span class="s3">&quot;com.example.johncena.check4.CameraWork&quot;</span><span class="s1">); 
+                startActivity(i); 
+            } 
+ 
+ 
+ 
+        }); 
+ 
+ 
+ 
+ 
+    } 
+ 
+</span><span class="s4">/* 
+    public void takePhoto(View view) { 
+        Intent callCameraApplicationIntent = new Intent(); 
+        callCameraApplicationIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE); 
+        startActivityForResult(callCameraApplicationIntent, ACTIVITY_START_CAMERA_APP); 
+    } 
+ 
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) { 
+        if (requestCode == ACTIVITY_START_CAMERA_APP &amp;&amp; resultCode == RESULT_OK) { 
+            Toast.makeText(this, &quot;picture taken successfully&quot;, Toast.LENGTH_SHORT).show(); 
+ 
+            super.onActivityResult(requestCode, resultCode, data); 
+ 
+        } 
+    } 
+ 
+*/</span><span class="s1"> 
+ 
+   </span><span class="s4">// public void openGallery (View view) {</span><span class="s1"> 
+       </span><span class="s4">// Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);</span><span class="s1"> 
+      </span><span class="s4">//  startActivityForResult(gallery, PICK_IMAGE);</span><span class="s1"> 
+   </span><span class="s4">// }</span><span class="s1"> 
+ 
+ 
+    </span><span class="s0">protected void </span><span class="s1">onActivityResult(</span><span class="s0">int </span><span class="s1">requestCode, </span><span class="s0">int </span><span class="s1">resultCode, Intent data) { 
+       </span><span class="s4">/* if (requestCode == RESULT_OK &amp;&amp; requestCode == PICK_IMAGE) { 
+            Uri imageUri = data.getData(); 
+           //  imageView.setImageURI(null); 
+           //   imageView.setImageURI(imageUri); 
+ 
+ 
+        }*/</span><span class="s1"> 
+ 
+        </span><span class="s0">super</span><span class="s1">.onActivityResult(requestCode, resultCode, data); 
+        </span><span class="s0">try </span><span class="s1">{ 
+            </span><span class="s4">// When an Image is picked</span><span class="s1"> 
+          </span><span class="s4">/*  if (requestCode == RESULT_LOAD_IMG &amp;&amp; resultCode == RESULT_OK 
+                    &amp;&amp; null != data) { 
+                // Get the Image from data 
+ 
+                Uri selectedImage = data.getData(); 
+                String[] filePathColumn = { MediaStore.Images.Media.DATA }; 
+ 
+                // Get the cursor 
+                Cursor cursor = getContentResolver().query(selectedImage, 
+                        filePathColumn, null, null, null); 
+                // Move to first row 
+                cursor.moveToFirst(); 
+ 
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]); 
+                imgDecodableString = cursor.getString(columnIndex); 
+                cursor.close(); 
+              //  b1 = (Button) findViewById(R.id.b1); 
+                // Set the Image in ImageView after decoding the String 
+               // b1.setImageBitmap(BitmapFactory.decodeFile(imgDecodableString)); 
+                Bitmap yourSelectedImage=BitmapFactory.decodeFile(imgDecodableString); 
+                Drawable d=new BitmapDrawable(yourSelectedImage); 
+                */</span><span class="s1"> 
+ 
+ 
+                    </span><span class="s0">if</span><span class="s1">(resultCode==RESULT_OK){ 
+                        Uri uri=data.getData(); 
+                        String[]projection={MediaStore.Images.Media.DATA}; 
+ 
+                        Cursor cursor=getContentResolver().query(uri, projection, </span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">, </span><span class="s0">null</span><span class="s1">); 
+                        cursor.moveToFirst(); 
+ 
+                        </span><span class="s0">int </span><span class="s1">columnIndex=cursor.getColumnIndex(projection[</span><span class="s2">0</span><span class="s1">]); 
+                        String filePath=cursor.getString(columnIndex); 
+                        cursor.close(); 
+ 
+                        Bitmap yourSelectedImage=BitmapFactory.decodeFile(filePath); 
+                        Drawable d=</span><span class="s0">new </span><span class="s1">BitmapDrawable(yourSelectedImage); 
+ 
+                        Toast.makeText(</span><span class="s0">this</span><span class="s1">, </span><span class="s3">&quot;Image picking Succesful&quot;</span><span class="s1">, 
+                                Toast.LENGTH_LONG).show(); 
+ 
+                    } 
+ 
+                    </span><span class="s0">else </span><span class="s1">{ 
+                        Toast.makeText(</span><span class="s0">this</span><span class="s1">, </span><span class="s3">&quot;You haven't picked Image&quot;</span><span class="s1">, 
+                                Toast.LENGTH_LONG).show(); 
+                    } 
+ 
+ 
+ 
+ 
+ 
+        } </span><span class="s0">catch </span><span class="s1">(Exception e) { 
+            Toast.makeText(</span><span class="s0">this</span><span class="s1">, </span><span class="s3">&quot;Something went wrong&quot;</span><span class="s1">, Toast.LENGTH_LONG) 
+                    .show(); 
+        } 
+ 
+    } 
+} 
+</span></pre>
+</body>
+</html>
